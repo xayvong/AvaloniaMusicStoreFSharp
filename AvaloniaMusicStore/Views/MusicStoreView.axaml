@@ -1,0 +1,47 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="using:AvaloniaMusicStore.ViewModels"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:views="clr-namespace:AvaloniaMusicStore.Views"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaMusicStore.Views.MusicStoreView"
+			 x:DataType="vm:MusicStoreViewModel">
+			
+
+	<DockPanel>
+		<StackPanel DockPanel.Dock="Top">
+			<TextBox Text="{Binding SearchText.Value,Mode=TwoWay}" 
+					 Watermark="Press Enter to Search For Albums...">				
+			</TextBox>
+			<ProgressBar IsIndeterminate="True"
+						 IsVisible="{Binding IsBusy.Value, Mode=TwoWay}">
+				
+			</ProgressBar>
+		</StackPanel>
+		<Button Content="Buy Album"
+				DockPanel.Dock="Bottom"
+				HorizontalAlignment="Center"
+				Command="{Binding BuyMusicCommand}"
+				IsEnabled="{Binding IsSelected.Value}">			
+		</Button>
+		<Button Content="Search"
+				DockPanel.Dock="Bottom"
+				HorizontalAlignment="Center"
+				IsVisible="False"
+				Command="{Binding StartSearch}"
+				HotKey="Enter">
+		</Button>
+		<ListBox 
+			     ItemsSource="{Binding SearchResults}" 
+				 SelectedItem="{Binding SelectedAlbum.Value,Mode=TwoWay}"
+				 Background="Transparent"
+				 Margin="0 20">
+			<ListBox.ItemsPanel>
+				<ItemsPanelTemplate>
+					<WrapPanel></WrapPanel>
+				</ItemsPanelTemplate>				
+			</ListBox.ItemsPanel>
+		</ListBox>
+	</DockPanel>
+</UserControl>
