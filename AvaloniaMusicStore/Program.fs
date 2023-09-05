@@ -2,7 +2,7 @@
 
 open System
 open Avalonia
-open Avalonia.ReactiveUI
+
 
 module Program =
 
@@ -13,7 +13,7 @@ module Program =
             .UsePlatformDetect()
             .WithInterFont()
             .LogToTrace(areas = Array.empty)
-            .UseReactiveUI()
+            
 
     [<EntryPoint; STAThread>]
     let main argv =
