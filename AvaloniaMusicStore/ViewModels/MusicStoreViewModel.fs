@@ -20,7 +20,7 @@ type MusicStoreViewModel() =
     let searchText = new ReactiveProperty<string>()
 
     let myAlbumsCollection = new ReactiveCollection<AlbumViewModel>()
-    let searchViewCollection = new ReactiveCollection<AlbumViewModel>()
+    let searchResults = new ReactiveCollection<AlbumViewModel>()
 
     let mutable isBusy = new ReactiveProperty<bool>()
     let mutable isSelected = new ReactiveProperty<bool>(false)
@@ -33,7 +33,7 @@ type MusicStoreViewModel() =
 
     // Private Functions
     let loadCovers(cancellationToken:CancellationToken) = async {       
-        for album in searchViewCollection.ToList() do
+        for album in searchResults.ToList() do
             do! album.LoadCover()           
 
             if(cancellationToken.IsCancellationRequested) then
@@ -43,7 +43,7 @@ type MusicStoreViewModel() =
     let doSearch(s:string) =
         isBusy.Value <- true
         selectedAlbumSubscription.Dispose()
-        searchViewCollection.Clear()
+        searchResults.Clear()
         selectedAlbum.Value <- AlbumViewModel(Album.Empty)
         
         cancellationToken.Cancel()
@@ -56,7 +56,7 @@ type MusicStoreViewModel() =
 
             for album in albums.Result do 
                 let vm = new AlbumViewModel(album)
-                searchViewCollection.Add(vm)
+                searchResults.Add(vm)
 
             if cancellationToken.IsCancellationRequested |> not then
                 loadCovers(cancellationToken) |> Async.Start
@@ -105,7 +105,7 @@ type MusicStoreViewModel() =
     member _.IsSelected = isSelected 
     member _.MyAlbumsCollection = myAlbumsCollection
     member _.SearchText = searchText
-    member _.SearchResults = searchViewCollection
+    member _.SearchResults = searchResults
     member _.SelectedAlbum = selectedAlbum
     member _.StartSearch = startSearch
 

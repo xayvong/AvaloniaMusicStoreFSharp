@@ -15,7 +15,7 @@
 					 Watermark="Press Enter to Search For Albums...">				
 			</TextBox>
 			<ProgressBar IsIndeterminate="True"
-						 IsVisible="{Binding IsBusy.Value, Mode=TwoWay}">
+						 IsVisible="{Binding IsBusy.Value}">
 				
 			</ProgressBar>
 		</StackPanel>
