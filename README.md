@@ -68,10 +68,24 @@ And instead of Observable collection, I use a ReactiveCollection for my search r
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/9f393c40-7afe-4e8a-8c21-6364c39f8ab4)
 >For some reason, you don't need to add .Value to a ReactiveCollection when binding. I'm not sure what makes this different, but it works, so ¯\\\_(ツ)_/¯
 
-More details coming soon!
+# Album Service
 
+When it comes to creating the album model, and implenting the iTunes search library I really struggled with this section since I'm still a beginner when it comes to Asynchronous programming. 
+I eventually started getting comfortable with it and figured out how to use F# async tasks. Here's how I did it!
 
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/68626b6a-e85f-499f-a68f-dc5824438eaa)
 
+>I added in the ArtistId to make sure we're saving the json file with a unique file name. More on that later!
+
+Notice how I also set static members. This is a really neat F# feature that lets you call static members like functions without needing an instance of the type!
+
+![AvaloniaStaticMember](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/a4122e88-70b9-4790-a66f-cfb4fbc6b8c1)
+
+I also created a static function as a shortcut for creating an empty album. We'll need this later. 
+
+If look at the SearchAsync() function, you'll notice the = async. This is how you build an async task in F# and you put the your logic inside of the curly brackets.  
+
+More coming soon!
 
 
 
