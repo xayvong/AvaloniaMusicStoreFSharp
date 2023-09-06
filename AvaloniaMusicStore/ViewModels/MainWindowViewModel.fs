@@ -12,7 +12,6 @@ type MainWindowViewModel() =
     inherit ViewModelBase()
 
     // Properties and Commands
-
     let buyMusicCommand = new ReactiveCommand()
 
     let store = MusicStoreViewModel()
