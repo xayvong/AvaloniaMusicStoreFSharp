@@ -21,7 +21,7 @@ https://github.com/AvaloniaUI/avalonia-dotnet-templates
 
 So if the tutorial starts referencing project files you don't have, that might be why. 
 
-Follow along the tutorial for creating the UI. One of my favorite features of Avalonia is the live previewer. You can add and change things and the previewer will update them live. Neat!
+Follow along with the original tutorial for creating the UI. One of my favorite features of Avalonia is the live previewer. You can add and change things and the previewer will update them live. Neat!
 ![AvaloniaPreviewer](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/e50aca59-3cdd-4fa7-bc87-bf3296456561)
 
 Another thing to keep in mind is that hierarchy of your classes and files matters in F#! Whenever you make a new view or class, make sure to order them properly. You can pass things down, but not up!
