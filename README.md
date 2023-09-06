@@ -16,10 +16,10 @@ https://docs.avaloniaui.net/docs/next/tutorials/music-store-app/
 And here is ReactiveProperty, which I used as an alternative to ReactiveUI and Community Toolkit:
 https://github.com/runceel/ReactiveProperty#documentation
 
-One thing before you follow along, make sure you grab the templates for Avalonia first. At the time of when I started this project, Avalonia 11 did not come with these templates.
+One thing before you follow along, make sure you first grab the templates for Avalonia. At the time of when I started this project, Avalonia 11 did not come with these templates by default.
 https://github.com/AvaloniaUI/avalonia-dotnet-templates
 
-So if the tutorial starts referencing project files you don't have, that's why. 
+So if the tutorial starts referencing project files you don't have, that might be why. 
 
 Follow along the tutorial for creating the UI. One of my favorite features of Avalonia is the live previewer. You can add and change things and the previewer will update them live. Neat!
 ![AvaloniaPreviewer](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/e50aca59-3cdd-4fa7-bc87-bf3296456561)
@@ -54,7 +54,9 @@ Another difference is that when you are binding your reactive properties, you ne
 >If your bindings aren't working, check that first!
 
 And instead of Observable collection, I use a ReactiveCollection for my search results, and another reactive property for selectedAlbum.
+
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/5667448e-faf1-4933-8afd-59446c07e00d)
+
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/9ba1bb66-a074-4287-aaff-48e493f90da9)
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/ab5cd847-f180-4ad6-ac2e-c51e48640f27)
