@@ -100,9 +100,12 @@ those tasks inside of an async{} instead of Task{}.
 ![AvaloniaAsyncAwaitTask](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/2de853e9-2950-49ad-a113-47b38ddc9071)
 
 At the end of my async builder, I pipe it to an Async.Start 
->In F#, you have to await logic with Async.Await, and when you call your function you have to use Async.Start. So don't forget to start your async functions!
+>In F#, you await async logic with Async.Await, and when you call your async function you have to use Async.Start. Don't forget to start your async functions!
 
+Another thing I did differently was instead of having the search begin with typing, I created a button, made it invisible, and set the hotkey to Enter.
 
+![AvaloniaSearchKey](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f2120100-0a55-4632-b767-9aab4d57e153)
 
+More coming soon!
 
 
