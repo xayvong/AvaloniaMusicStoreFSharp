@@ -70,7 +70,7 @@ And instead of Observable collection, I use a ReactiveCollection for my search r
 
 # Album Service
 
-When it comes to creating the album model, and implenting the iTunes search library I really struggled with this section since I'm still a beginner when it comes to Asynchronous programming. 
+When it comes to creating the album model, and implementing the iTunes search library I really struggled with this section since I'm still a beginner when it comes to Asynchronous programming. 
 I eventually started getting comfortable with it and figured out how to use F# async tasks. Here's how I did it!
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/68626b6a-e85f-499f-a68f-dc5824438eaa)
@@ -83,11 +83,24 @@ Notice how I also set static members. This is a really neat F# feature that lets
 
 I also created a static function as a shortcut for creating an empty album. We'll need this later. 
 
-If look at the SearchAsync() function, you'll notice the = async. This is how you build an async task in F# and you put the your logic inside of the curly brackets.  
+If you look at the SearchAsync() function, you'll notice the = async. This is how you build an async workflow in F# and you put your logic inside of the curly brackets.  
 
-More coming soon!
+In my async builder, I first set my searchManager as a new iTunesSearchManager() and then set my query using the GetAlbumsAsync() function. Notice how the let has a !. This is how you bind a Task to a name.
+Since the GetAlbumAsync() function is a Task, I have to pipe it to an Async.AwaitTask. 
 
+We then create the doSearch function in MusicStoreViewModel and it'll look something like this:
 
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/2fe12ab1-7c2c-4a0c-9581-59ae36035420)
+
+Under my first if statement, I create another async builder and bind my SearchAsync. Notice how I pipe it to an Async.StartAsTask? Since that function is a computation, I have to start it as a Task. 
+
+In F#, Async and Task are not the same thing. Yes, they are both asynchronous workflows, but are considered different value types. However, with the Async.AwaitTask, and Async.StartAsTask, I can work with
+those tasks inside of an async{} instead of Task{}. 
+
+![AvaloniaAsyncAwaitTask](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/2de853e9-2950-49ad-a113-47b38ddc9071)
+
+At the end of my async builder, I pipe it to an Async.Start 
+>In F#, you have to await logic with Async.Await, and when you call your function you have to use Async.Start. So don't forget to start your async functions!
 
 
 
