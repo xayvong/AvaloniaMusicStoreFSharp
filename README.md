@@ -106,7 +106,23 @@ Another thing I did differently was instead of having the search begin with typi
 
 ![AvaloniaSearchKey](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f2120100-0a55-4632-b767-9aab4d57e153)
 
-To load the covers, in my album model, I set a public member with `LoadCoverBitmapAsync()` and set my logic. 
+In order to start the search, I need create a command and subscribe to it. I create a startSearch ReactiveCommand().
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/835edb93-a20e-4b90-8e2e-026b7bb853f4)
+
+And subscribe to it where I set all my do commands.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/5c22aa09-fc84-40fb-9dae-7d0a60de644e)
+
+>Notice how my startSearch is one line lower than the do? You can actually keep adding commands without having to type do ... over and over again for additional commands!
+
+Then we bind the command to a public member and add it to our invisible search button. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/3cd703a7-4d19-49a7-bb05-aaa0420616bf)
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f8843297-a205-4748-b219-10ee230979d7)
+
+To load the covers in my album model, I set a public member with LoadCoverBitmapAsync() and set my logic. 
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/12650e63-810a-4d75-836f-085794a4a1a4)
 
@@ -130,3 +146,14 @@ And then add the cancellation logic to our doSearch() function.
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/6fc77833-ccc7-4aca-b5f9-eccbbd7a832c)
 
 > loadCovers() is an async function, so don't forget to start it!
+
+![AvaloniaSearchOasis](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/bb4bdfeb-6a64-45e5-8971-cac969d95c1a)
+
+#Buy Music Command 
+
+Now that we have the album search working, we need to bind the music we buy to a collection. Follow along with the original tutorial for the xaml parts, and I'll show how I handled the F# code.
+
+One issue I ran into is that I'm still not sure how to create a proper Dialog Return. In the original tutorial, 
+
+
+
