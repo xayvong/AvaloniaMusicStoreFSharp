@@ -119,5 +119,5 @@ I create the cover as a new ReactiveProperty and make my `LoadCover()` function 
 And in my MusicStoreViewModel, I add an async `loadCover()` function. 
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/c1f042d1-9dc8-4acc-b04e-7307061a5c83)
-
+>Don't worry about the cancellationToken yet, we'll get to it!
 
