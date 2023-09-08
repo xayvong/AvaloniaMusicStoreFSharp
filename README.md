@@ -114,10 +114,19 @@ And in my AlbumViewModel, we set the logic to load our covers.
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/1919fe91-afe7-458d-a8d3-acea5bcb6dff)
 
-I create the cover as a new ReactiveProperty and make my `LoadCover()` function async. 
+I create the cover as a new ReactiveProperty and make my LoadCover() function async. 
 
-And in my MusicStoreViewModel, I add an async `loadCover()` function. 
+And in my MusicStoreViewModel, I add an async loadCover() function. 
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/c1f042d1-9dc8-4acc-b04e-7307061a5c83)
 >Don't worry about the cancellationToken yet, we'll get to it!
 
+First we set our cancellation token.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/3a8b2c3a-18ce-41ff-ad6a-9a47500ae287)
+
+And then add the cancellation logic to our doSearch() function. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/6fc77833-ccc7-4aca-b5f9-eccbbd7a832c)
+
+> loadCovers() is an async function, so don't forget to start it!
