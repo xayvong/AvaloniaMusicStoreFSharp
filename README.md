@@ -106,6 +106,18 @@ Another thing I did differently was instead of having the search begin with typi
 
 ![AvaloniaSearchKey](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f2120100-0a55-4632-b767-9aab4d57e153)
 
-More coming soon!
+To load the covers, in my album model, I set a public member with `LoadCoverBitmapAsync()` and set my logic. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/12650e63-810a-4d75-836f-085794a4a1a4)
+
+And in my AlbumViewModel, we set the logic to load our covers. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/1919fe91-afe7-458d-a8d3-acea5bcb6dff)
+
+I create the cover as a new ReactiveProperty and make my `LoadCover()` function async. 
+
+And in my MusicStoreViewModel, I add an async `loadCover()` function. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/c1f042d1-9dc8-4acc-b04e-7307061a5c83)
 
 
