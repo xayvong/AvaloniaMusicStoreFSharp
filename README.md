@@ -149,11 +149,13 @@ And then add the cancellation logic to our doSearch() function.
 
 ![AvaloniaSearchOasis](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/bb4bdfeb-6a64-45e5-8971-cac969d95c1a)
 
-#Buy Music Command 
+# Buy Music Command 
 
 Now that we have the album search working, we need to bind the music we buy to a collection. Follow along with the original tutorial for the xaml parts, and I'll show how I handled the F# code.
 
 One issue I ran into is that I'm still not sure how to create a proper Dialog Return. In the original tutorial, 
+
+More coming soon!
 
 
 
