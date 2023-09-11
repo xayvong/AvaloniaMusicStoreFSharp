@@ -54,6 +54,7 @@ In the tutorial, they have you set the search text and the loading bar using rea
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/7c1fb9e9-a0b7-461b-85b5-167e81343dcb)
 
 Another difference is that when you are binding your reactive properties, you need to add .Value to the binding.
+
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/d8680bdc-d45e-4548-9b23-9c80429180b1)
 >If your bindings aren't working, check that first!
 
@@ -153,9 +154,46 @@ And then add the cancellation logic to our doSearch() function.
 
 Now that we have the album search working, we need to bind the music we buy to a collection. Follow along with the original tutorial for the xaml parts, and I'll show how I handled the F# code.
 
-One issue I ran into is that I'm still not sure how to create a proper Dialog Return. In the original tutorial, 
+One issue I ran into is that I'm still not sure how to create a proper Dialog Return. In the original tutorial, it used ReactiveUI and returned a dialog result. I ended doing a work around and need to look into
+how I would implement it in the future. 
 
-More coming soon!
+I create a ReactiveCommand() to bind to my Buy Album button. 
 
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/7b9052c0-14b1-4d4a-a568-54412f11fe9b)
+
+Then I create a ReactiveCollection() that will hold and display bought albums.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/2966f405-3843-46a8-9bb1-55913e7ee028)
+
+Create a function that will handle the logic for buying an album. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/41ac257f-d7b6-45a1-8605-f2116c4efefc)
+
+And finally subscribe to the buyMusicCommand and bind it to a public member. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/0e51e6bb-47f6-424e-8783-62e32bca4a89)
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/a85a1bbf-e3fb-476b-85d1-5f4eda6f68c0)
+
+But wait, I created the Collection in the MusicStoreViewModel? How do I display that in the MainWindow? Easy! First I bind the collection to a public member:
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/30dbee8c-65a9-4414-a86b-36288fb3bb11)
+
+And pass it down to the MainWindowViewModel
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/cd61b91c-4f48-48c2-a02d-ef7dc51be37b)
+
+Then in the xaml, we bind the collection to our view.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/85dd39e9-18f3-40fc-be09-346a251102f4)
+
+Now we can add albums that get displayed to the MainWindow!
+
+![AvaloniaAddAlbums](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/43a2761e-0fb0-43a5-a17d-d41df6495414)
+
+# Add Data Persistence
+
+Following the tutorial, I actually ran into a few problems trying to save and load persistent data. The tutorial has you save your .bmp files and .json files in the 
+same cache which causes problems when you try to deserialize your data. I'll explain as we go over the code. 
 
 
