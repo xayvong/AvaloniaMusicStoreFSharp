@@ -295,3 +295,8 @@ the artist name is blank.
 
 > Place this code underneath the isBusy.Value <- false in doSearch().
 
+![AvaloniaBuyAlbumTest](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/589f006b-048a-4465-9c61-a34e78b567fd)
+
+As you can see it works!....kind of. What's going on? How is it becoming null?
+
+More coming soon!
