@@ -197,4 +197,20 @@ Now we can add albums that get displayed to the MainWindow!
 Following the tutorial, I actually ran into a few problems trying to save and load persistent data. The tutorial has you save your .bmp files and .json files in the 
 same cache which causes problems when you try to deserialize your data. I'll explain as we go over the code. 
 
+To help keep things organized, I separated my saving and loading services to a different class in my Services folder and called it AlbumServices.fs. 
 
+I set both my cachePath and bmpCachePath.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/6c359bb7-8e01-48fa-b655-3788bd0a97ae)
+
+In F#, order matters, and I notice the SaveToStreamAsync() is used in the public function SaveAsync(). So we need to set the static async function first. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/20440a4e-f232-41c5-94dd-59bc92a3b421)
+
+And then we set the rest of the Save functions
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/30ae0a9d-34d6-40d3-ac6e-9467bbec1ba1)
+
+In the SaveAsync() function, I added ".json" to the end of the cachePath. If you don't add this, the files you save will get skipped by the Deserializer. In the SaveCoverBitmapStream(), I also add a check for the Bmp directory.
+One issue I ran into initially was that the program would always crash whenever I tried to load persistent data. I turns out the Deserializer was trying to deserialize .bmp files which would always cause a crash. 
+There are a couple of ways you can avoid this, but I opted to just save the covers in a different folder. 
