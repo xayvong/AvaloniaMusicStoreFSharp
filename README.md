@@ -212,5 +212,50 @@ And then we set the rest of the Save functions
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/30ae0a9d-34d6-40d3-ac6e-9467bbec1ba1)
 
 In the SaveAsync() function, I added ".json" to the end of the cachePath. If you don't add this, the files you save will get skipped by the Deserializer. In the SaveCoverBitmapStream(), I also add a check for the Bmp directory.
-One issue I ran into initially was that the program would always crash whenever I tried to load persistent data. I turns out the Deserializer was trying to deserialize .bmp files which would always cause a crash. 
-There are a couple of ways you can avoid this, but I opted to just save the covers in a different folder. 
+One issue I ran into initially was that the program would always crash whenever I tried to load persistent data. It turns out the Deserializer was trying to deserialize .bmp files which would always cause a crash. 
+There are a couple of ways you can avoid this, but I opted to just save the covers to a different folder. 
+
+For loading, I first set up a static member LoadFromStream():
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/05c35653-faf6-45c1-a383-a2bcf3586ff0)
+
+And then set a static LoadCachedAsync(). I originally returned the list per the tutorials intruction, but after looking at it, I decided to use a more F# friendly approach. I kept both ways in the project 
+and left the original method as a comment for comparison. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/7bfc8dbb-2ff5-42ee-a247-5346d47823f8)
+
+> It's typically bad practice to leave unused commented code in a program, but for the sake of practice and study, I kept it in so it could be referenced in the future.
+
+In the AlbumViewModel, I create a SaveToDiskAsync() function.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/2033f1b4-da74-4ace-a17b-a74a59911e70)
+
+Then add the function to my buyAlbum() in the MainViewModel. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/fce4997a-d1ac-4baa-a5dc-e2415654a523)
+
+Once you load up the program, search and buy a few albums and you'll see the data being saved in your Cache folder!
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/8c2a7ae3-2dc8-42c9-a4a2-9ec25ab3a277)
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/e27c050e-00d6-4efd-b539-94c8c07a59fc)
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/86881367-44aa-4faf-9387-d460e4026fc7)
+
+Last but not least, to set up loading the albums when the program starts, I create an async loadAlbums() function:
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/75f0ecb1-32dd-4ac3-92bf-49c8b2906524)
+
+Alternatively, you can also use a more F# specific format like this:
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/b3b211f4-cc78-417a-8b23-d28ec4b5c933)
+
+And in our do functions, we the loadAlbums() function and start it. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/6007166e-001d-4a6a-8f80-9d91bfcdff8d)
+
+Now we run the program. 
+
+![AvaloniaLoadingOnStart](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/588f5de3-6cea-4bca-8449-8152610f0a31)
+
+All of the albums we've purchased now load at start. Nice!
