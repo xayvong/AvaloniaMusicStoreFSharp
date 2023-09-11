@@ -30,7 +30,7 @@ type MusicStoreViewModel() =
     let buyMusicCommand = new ReactiveCommand()
     let startSearch = new ReactiveCommand()
 
-
+    
     // Private Functions
     let loadCovers(cancellationToken:CancellationToken) = async {       
         for album in searchResults.ToList() do
@@ -78,13 +78,21 @@ type MusicStoreViewModel() =
     let loadAlbums() = async {     
         let albums = AlbumServices.LoadCachedAsync()
 
-        for album in albums do
-            myAlbumsCollection.Add(AlbumViewModel(album))
+        albums
+        |> Seq.map AlbumViewModel
+        |> Seq.iter myAlbumsCollection.Add
 
-        for album in myAlbumsCollection.ToList() do
-            album.LoadCover() |> Async.Start
-        } 
-    
+        myAlbumsCollection 
+        |> Seq.map (fun album -> album.LoadCover())
+        |> Seq.iter Async.Start
+
+        //for album in albums do
+        //    myAlbumsCollection.Add(AlbumViewModel(album))
+
+        //for album in myAlbumsCollection.ToList() do
+        //    album.LoadCover() |> Async.Start       
+
+        }  
 
             
     // Do and commands

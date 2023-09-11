@@ -1,9 +1,10 @@
 ﻿namespace AvaloniaMusicStore.Models
 
-open iTunesSearch.Library
 open System.Linq
 open System.Net.Http
 open System.IO
+
+open iTunesSearch.Library
 
 type Album(artist, title, coverUrl, artistId: int64) = 
     
