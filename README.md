@@ -126,6 +126,7 @@ Then we bind the command to a public member and add it to our invisible search b
 To load the covers in my album model, I set a public member with LoadCoverBitmapAsync() and set my logic. 
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/12650e63-810a-4d75-836f-085794a4a1a4)
+>This part differs from the tutorial since I'm saving it to bmpCachePath instead of cachePath. You'll see why later. 
 
 And in my AlbumViewModel, we set the logic to load our covers. 
 
