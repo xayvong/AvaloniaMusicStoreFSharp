@@ -259,3 +259,39 @@ Now we run the program.
 ![AvaloniaLoadingOnStart](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/588f5de3-6cea-4bca-8449-8152610f0a31)
 
 All of the albums we've purchased now load at start. Nice!
+
+# Adding Some Protection.
+
+I added one countermeasure after realizing the software would crash if you didn't have an album selected when you clicked the Buy Album button.
+By default, F# does not allow null values, so you can't really do a null check. 
+
+![AvaloniaIsNull](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/83bc1633-f4fe-4a0f-ace2-1f1566359dd4)
+
+I could have allowed nullables in the program, but I decided against it to help prevent problems
+that can typically occur when working with nulls. 
+
+I decided the best way to approach this is to disable the Buy Album button until something has been selected. 
+
+I create an isSelected ReactiveProperty and set the default value to false. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/28dbbf86-7794-4c88-9315-1523cfd388d4)
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/4c4dbba7-a6c3-4e43-aa6e-7f1f7aaac81f)
+
+And bind it to the isEnabled on my button in the view. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f47dd1a0-430b-4c3a-873f-1a384fff6e6a)
+
+If I can't check if something is null, then how do I check to make sure something has been selected? I decide to check the values of my album object instead.
+
+On my selectedAlbum property, I create an empty album as the default value. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/25cae551-3582-434c-a143-d978abb946e5)
+
+In the MusicStoreViewModel, in my doSearch function, we subscribe to our selected album and pass the function to check if the string value for
+the artist name is blank. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/e248300d-575b-405a-a112-0a656f70ba8a)
+
+> Place this code underneath the isBusy.Value <- false in doSearch().
+
