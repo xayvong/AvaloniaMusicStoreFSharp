@@ -291,12 +291,57 @@ On my selectedAlbum property, I create an empty album as the default value.
 In the MusicStoreViewModel, in my doSearch function, we subscribe to our selected album and pass the function to check if the string value for
 the artist name is blank. 
 
-![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/e248300d-575b-405a-a112-0a656f70ba8a)
-
-> Place this code underneath the isBusy.Value <- false in doSearch().
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/ecd8e56b-3c48-448c-8172-454639b2d5fa)
 
 ![AvaloniaBuyAlbumTest](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/589f006b-048a-4465-9c61-a34e78b567fd)
 
 As you can see it works!....kind of. What's going on? How is it becoming null?
 
-More coming soon!
+If you look carefully at the beginning of the doSearch(), you'll notice what's causing the value to turn null. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/41ac9179-0252-4607-90e5-74debaed4e0f)
+
+Before we start a new search, we always clear the list first. If we didn't, every search would just keep adding to the list.
+Since we subscribed to selectedAlbum, that means it's now being Observed. So when we clear the list, the item you have selected suddenly disappears
+and we recieve an error. 
+
+Well, what do we do now? Although this feels a little messy, this is the solution I came up with.
+
+If the reason we're crashing is because we're subscribed to the selected album, then we just unsubscribe when we start the search, and re-subscribe once it's done!
+
+Let's look again at the selectedAlbum.Subscribe().
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/ecd8e56b-3c48-448c-8172-454639b2d5fa)
+
+If you look at the end, you'll see a |> ignore. The reason why we ignore this is because every subscribe returns an iDisposable. We haven't had needed to use 
+iDisposable for anything, so we simply tossed out the result. 
+
+Here, we need to use it to properly apply an unsubscribe. First, we create an empty Disposable property. 
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/a5a783f8-4f7d-444c-97cf-d0d4a50c801a)
+
+Since we now want the iDisposable result, we apply it to our new property.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/d99c89bf-b299-48e1-9c20-c07abd1a88f2)
+
+>After taking a second pass at the subscribe, I decided I could shorten it with a <> inequality. 
+
+Under searchResults.Clear() I set the values of my selectedAlbum to an empty album.
+
+![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/e1c5cfa8-7af5-490c-8ba7-1a3472ca9616)
+
+Now to test out if it works. 
+
+![AvaloniaChangeSearch](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/9744d860-863f-4b44-80fc-11f805dfce73)
+
+And there we have it! Everything seems to be working as expected.
+
+# Conclusion
+
+I really enjoyed following the tutorial and then trying to figure out how to translate the code shown to F#. I enjoy working in the MVVM model and
+wanted to find out if that was possible to do with F#. Although, I still have a lot to learn and figure out, I think this is going to be my approach going forward with UI design.
+
+I hope anyone that reads this enjoyed following through! Even though Avalonia comes out of the box with F#, the lack of documentation really makes it difficult when you get stuck. 
+I created this tutorial with the hope of having more resources available for other F# developers, especially those that are learning it. If you have any suggestions or any insight as to what I could change or make
+better, please let me know! I'm more than happy to recieve more knowledge and advice. 
+
