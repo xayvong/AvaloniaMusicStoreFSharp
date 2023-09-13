@@ -106,7 +106,7 @@ Another thing I did differently was instead of having the search begin with typi
 
 ![AvaloniaSearchKey](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f2120100-0a55-4632-b767-9aab4d57e153)
 
-In order to start the search, I need create a command and subscribe to it. I create a startSearch ReactiveCommand().
+In order to start the search, I need to create a command and subscribe to it, and then I create a startSearch ReactiveCommand().
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/835edb93-a20e-4b90-8e2e-026b7bb853f4)
 
@@ -218,8 +218,8 @@ For loading, I first set up a static member LoadFromStream():
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/05c35653-faf6-45c1-a383-a2bcf3586ff0)
 
-And then set a static LoadCachedAsync(). I originally returned the list per the tutorials intruction, but after looking at it, I decided to use a more F# friendly approach. I kept both ways in the project 
-and left the original method as a comment for comparison. 
+And then set a static LoadCachedAsync(). I originally returned the list per the tutorials instruction, but after looking at it, I decided to use a more F# friendly approach. I kept both ways in the project 
+and left the original method as a comment for compariso
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/7bfc8dbb-2ff5-42ee-a247-5346d47823f8)
 
@@ -249,7 +249,7 @@ Alternatively, you can also use a more F# specific format like this:
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/b3b211f4-cc78-417a-8b23-d28ec4b5c933)
 
-And in our do functions, we the loadAlbums() function and start it. 
+And in our do functions, we use the loadAlbums() function and start it. 
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/6007166e-001d-4a6a-8f80-9d91bfcdff8d)
 
@@ -281,14 +281,14 @@ And bind it to the isEnabled on my button in the view.
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/f47dd1a0-430b-4c3a-873f-1a384fff6e6a)
 
-If I can't check if something is null, then how do I check to make sure something has been selected? I decide to check the values of my album object instead.
+If I can't check if something is null, then how do I check to make sure something has been selected? I decided to check the values of my album object instead.
 
 On my selectedAlbum property, I create an empty album as the default value. 
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/25cae551-3582-434c-a143-d978abb946e5)
 
-In the MusicStoreViewModel, in my doSearch function, we subscribe to our selected album and pass the function to check if the string value for
-the artist name is blank. 
+In the MusicStoreViewModel inside of my doSearch function, we subscribe to our selected album and pass the function to check if the string value for
+Artist is blank.  
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/ecd8e56b-3c48-448c-8172-454639b2d5fa)
 
@@ -302,7 +302,7 @@ If you look carefully at the beginning of the doSearch(), you'll notice what's c
 
 Before we start a new search, we always clear the list first. If we didn't, every search would just keep adding to the list.
 Since we subscribed to selectedAlbum, that means it's now being Observed. So when we clear the list, the item you have selected suddenly disappears
-and we recieve an error. 
+and we receive an error. 
 
 Well, what do we do now? Although this feels a little messy, this is the solution I came up with.
 
@@ -338,9 +338,9 @@ And there we have it! Everything seems to be working as expected.
 # Conclusion
 
 I really enjoyed following the tutorial and then trying to figure out how to translate the code shown to F#. I enjoy working in the MVVM model and
-wanted to find out if that was possible to do with F#. Although, I still have a lot to learn and figure out, I think this is going to be my approach going forward with UI design.
+wanted to find out if that was possible to do with F#. Although I still have a lot to learn, I think this is going to be my approach going forward with UI design.
 
 I hope anyone that reads this enjoyed following through! Even though Avalonia comes out of the box with F#, the lack of documentation really makes it difficult when you get stuck. 
-I created this tutorial with the hope of having more resources available for other F# developers, especially those that are learning it. If you have any suggestions or any insight as to what I could change or make
-better, please let me know! I'm more than happy to recieve more knowledge and advice. 
+I wrote this lesson in the hopes of providing more resources for fellow F# developers, particularly those who are just starting out. If you have any suggestions or insight as to what I could change or improve, please let me know! I'm more than happy to receive knowledge and advice. 
+
 
