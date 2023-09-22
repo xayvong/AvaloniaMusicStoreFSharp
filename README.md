@@ -206,7 +206,7 @@ In F#, order matters, and I notice the SaveToStreamAsync() is used in the public
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/20440a4e-f232-41c5-94dd-59bc92a3b421)
 
-And then we set the rest of the Save functions
+And then we set the rest of the Save functions.
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/30ae0a9d-34d6-40d3-ac6e-9467bbec1ba1)
 
@@ -219,7 +219,7 @@ For loading, I first set up a static member LoadFromStream():
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/05c35653-faf6-45c1-a383-a2bcf3586ff0)
 
 And then set a static LoadCachedAsync(). I originally returned the list per the tutorials instruction, but after looking at it, I decided to use a more F# friendly approach. I kept both ways in the project 
-and left the original method as a comment for compariso
+and left the original method as a comment for comparison.
 
 ![image](https://github.com/xayvong/AvaloniaMusicStoreFSharp/assets/89797311/7bfc8dbb-2ff5-42ee-a247-5346d47823f8)
 
