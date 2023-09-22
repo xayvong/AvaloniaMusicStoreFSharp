@@ -6,7 +6,7 @@ This is an MVVM project that uses Avalonia UI, F#, and ReactiveProperty. This wi
 
 I'm also still quite new to F# and Avalonia, so if anyone has any advice on what I could have differently or better (Or maybe explain how the heck I use ReactiveUI with F#), any suggestions are welcome!
 
-You can check out the Avalonia here: 
+You can check out Avalonia here: 
 https://avaloniaui.net/
 
 Here's the tutorial I followed: 
